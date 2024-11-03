@@ -35,7 +35,7 @@ DEFCONFIG_S6FLAT=ultimate_defconfig_flat
 TMOBILE_DEFCONFIG=ultimate_defconfig_tmobile
 
 export K_VERSION="v1.8.5"
-export K_NAME="Ultimate-Kernel"
+export K_NAME="Re-Ultimate-Kernel"
 export REVISION="RC"
 export KBUILD_BUILD_VERSION="1"
 S6DEVICE="Nougat"
