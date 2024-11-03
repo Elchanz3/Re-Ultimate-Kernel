@@ -76,7 +76,7 @@ struct decon_lcd s6e3hf2_lcd_info = {
 	.hs_clk = 1100,
 	.esc_clk = 20,
 
-	.fps = 60,
+	.fps = 65,
 	.mic_enabled = 1,
 	.mic_ver = MIC_VER_1_2,
 };
