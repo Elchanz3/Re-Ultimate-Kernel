@@ -31,8 +31,8 @@
 #define ATLAS_EMA_CON (EXYNOS7420_VA_SYSREG + 0x0138)
 #define CPU_EMA_REG1 (EXYNOS7420_VA_SYSREG + 0x2908)
 
-static int max_support_idx_CA57;
-static int min_support_idx_CA57 = (CPUFREQ_LEVEL_END_CA57 - 1);
+static unsigned int max_support_idx_CA57 = L4;    /* 2.1GHz */
+static unsigned int min_support_idx_CA57 = L17;   /* 800MHz */
 
 static struct clk *mout_atlas;
 static struct clk *mout_atlas_pll;
@@ -127,10 +127,14 @@ static struct apll_freq exynos7420_apll_freq_CA57[] = {
  * ASV group voltage table
  */
 static const unsigned int asv_voltage_7420_CA57[CPUFREQ_LEVEL_END_CA57] = {
-	1250000,	/* L0  2500 */
-	1250000,	/* L1  2400 */
-	1250000,	/* L2  2300 */
-	1250000,	/* L3  2200 */
+	1450000,	/* L0  2500 */
+	1400000,	/* L1  2400 */
+	1350000,	/* L2  2300 */
+	1300000,	/* L3  2200 */
+	1375000,	/* L0  2500 */
+	1325000,	/* L1  2400 */
+	1275000,	/* L2  2300 */
+	1225000,	/* L3  2200 */
 	1212500,	/* L4  2100 */
 	1162500,	/* L5  2000 */
 	1118750,	/* L6  1900 */
@@ -374,21 +378,7 @@ static void __init set_volt_table_CA57(void)
 				exynos7420_abb_table_CA57[i]);
 	}
 
-#if defined(CONFIG_CPU_THERMAL) && defined(CONFIG_EXYNOS5_DYNAMIC_CPU_HOTPLUG)
-	switch (exynos_get_table_ver()) {
-	case 0 :
-	case 1 :
-	case 4 :
-	case 12 :
-		max_support_idx_CA57 = L7; break;	/* 1.8GHz */
-	case 5 :
-		max_support_idx_CA57 = L10; break;	/* 1.5GHz */
-	default :
-		max_support_idx_CA57 = L4;		/* 2.1GHz */
-	}
-#else
-	max_support_idx_CA57 = L13;	/* 1.2 GHz */
-#endif
+	max_support_idx_CA57 = L4;	/* 2.1GHz */
 
 	min_support_idx_CA57 = L23;	/* 200 MHz */
 
